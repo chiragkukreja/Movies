@@ -101,10 +101,10 @@
             </objects>
             <point key="canvasLocation" x="1076" y="133.5832083958021"/>
         </scene>
-        <!--Movie Selection View Controller-->
+        <!--Movie Details View Controller-->
         <scene sceneID="zQj-a2-hcf">
             <objects>
-                <viewController storyboardIdentifier="MovieSelectionViewController" id="8Ru-DH-Jrp" customClass="MovieSelectionViewController" customModule="Movies" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MovieDetailsViewController" id="8Ru-DH-Jrp" customClass="MovieDetailsViewController" customModule="Movies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZdH-eP-wH2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -112,7 +112,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aQi-Ef-CYi">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="cL3-Id-mGg">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="cL3-Id-mGg">
                                         <rect key="frame" x="0.0" y="20" width="375" height="375"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="cL3-Id-mGg" secondAttribute="height" id="nTl-l1-sDC"/>

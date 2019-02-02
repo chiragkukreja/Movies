@@ -9,7 +9,7 @@
 import UIKit
 import SDWebImage
 
-final class MovieSelectionViewController: UIViewController {
+final class MovieDetailsViewController: UIViewController {
 
     var viewModel: MovieSelectionViewModel!
     @IBOutlet weak var moviePoster: UIImageView!
@@ -27,7 +27,7 @@ final class MovieSelectionViewController: UIViewController {
         indicatorView.startAnimating()
     }
 }
-extension MovieSelectionViewController: MovieSelectionViewModelDelegate {
+extension MovieDetailsViewController: MovieSelectionViewModelDelegate {
     
     func onFetchCompleted() {
         indicatorView.stopAnimating()

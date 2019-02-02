@@ -27,7 +27,7 @@ enum NetworkRouter {
 struct Constant {
     static let apiKey = "a31d7d7066379405a7d51c8e838527b9"
     static let imgaelogoPath = "http://image.tmdb.org/t/p/w154/"
-    static let imagepath = "http://image.tmdb.org/t/p/w300/"
+    static let imagepath = "http://image.tmdb.org/t/p/w500/"
 }
 extension NetworkRouter: TargetType {
     var baseURL: URL {

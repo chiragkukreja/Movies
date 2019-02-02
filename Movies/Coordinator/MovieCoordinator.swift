@@ -15,13 +15,14 @@ protocol BaseCoordinatorProtocol: class {
 
 class BaseCoordinator: BaseCoordinatorProtocol {
     var navigationController: UINavigationController?
-    
     required init(_ fromController: UINavigationController? = nil) {
         self.navigationController = fromController
     }
 }
 
+
 final class MovieFilterCoordinator : BaseCoordinator {
+    /*This function will present FilterScreen and It take 2 params: from which controller it will be presented and what are the already applied filters */
     func show(from viewController: MoviesViewController, filters: Filters) {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FilterViewController") as! FilterViewController
         let viewModel = FilterViewModel(filters: filters)
@@ -34,8 +35,9 @@ final class MovieFilterCoordinator : BaseCoordinator {
     }
 }
 final class MovieDetailCoordinator: BaseCoordinator {
+    // This function will naviage to Movie Detail ViewController
     func show(from viewController: UIViewController, movieId: Int) {
-        let vc: MovieSelectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieSelectionViewController") as! MovieSelectionViewController
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
         let selectionViewModel = MovieSelectionViewModel(networkProvider: AppProvider.networkManager, movieId: movieId)
         vc.viewModel = selectionViewModel
         self.navigationController?.pushViewController(vc, animated: true)
