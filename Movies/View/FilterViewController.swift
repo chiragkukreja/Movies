@@ -33,7 +33,6 @@ class FilterViewController: UIViewController {
         let filters = Filters(minYear: minYear.text ?? "", maxYear: maxYear.text ?? "")
         delegate?.handleButttonAction(with: filters)
     }
-    
 }
 
 extension FilterViewController: UITextFieldDelegate {

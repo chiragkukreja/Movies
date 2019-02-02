@@ -27,10 +27,12 @@ class MoviesViewModel {
     struct Constant {
         static let failureMessage = "No results Found"
     }
+    // This count represents total count  of the movie which we have to load from the server
     var totalCount: Int {
         return totalItems
     }
     
+    // this count represts number of movie we have fetched
     var currentCount: Int {
         return movies.count
     }
@@ -43,11 +45,13 @@ class MoviesViewModel {
         self.networkProvider = networkProvider
     }
     
+    // This will reset the all the counts after applying filters
     func resetCurrentPage() {
         currentPage = 1
         movies = [Movie]()
         totalItems = 0
     }
+    // This function will fetch movies from the server
     func getNewMovies(){
         guard !isFetchInProgress else {
             return
@@ -79,14 +83,14 @@ class MoviesViewModel {
                     } catch let err {
                         print(err)
                     }
-                case let .failure(error):
+                case let .failure(_):
                     self.delegate?.onFetchFailed(with: Constant.failureMessage)
                 }
             }
         }
             
     }
-    
+    // This will give indexpath path of the cells which has to be release after getting new page response
     private func calculateIndexPathsToReload(from newResults: [Movie]) -> [IndexPath] {
         let startIndex = movies.count - newResults.count
         let endIndex = startIndex + newResults.count

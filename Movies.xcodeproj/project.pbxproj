@@ -10,6 +10,9 @@
 		121141D47B7726D0133FE6B2 /* Pods_Movies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6F66501275ACC8DFF9D9302 /* Pods_Movies.framework */; };
 		1A769D17013C3AC983889A03 /* Pods_MoviesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3D960C9E5CC2801C1019471 /* Pods_MoviesTests.framework */; };
 		4D32DC592205DB0F002ECDD9 /* MovieCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D32DC582205DB0F002ECDD9 /* MovieCoordinator.swift */; };
+		4D32DC5C2205ED05002ECDD9 /* MoviesList.json in Resources */ = {isa = PBXBuildFile; fileRef = 4D32DC5B2205ED05002ECDD9 /* MoviesList.json */; };
+		4D32DC5F2205EE2F002ECDD9 /* StubResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D32DC5D2205EDBC002ECDD9 /* StubResponse.swift */; };
+		4D32DC602205F1D8002ECDD9 /* MoviesList.json in Resources */ = {isa = PBXBuildFile; fileRef = 4D32DC5B2205ED05002ECDD9 /* MoviesList.json */; };
 		4D91EED222021388004EEA03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D91EED122021388004EEA03 /* AppDelegate.swift */; };
 		4D91EED422021388004EEA03 /* MovieSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D91EED322021388004EEA03 /* MovieSelectionViewController.swift */; };
 		4D91EED722021388004EEA03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D91EED522021388004EEA03 /* Main.storyboard */; };
@@ -49,6 +52,8 @@
 
 /* Begin PBXFileReference section */
 		4D32DC582205DB0F002ECDD9 /* MovieCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCoordinator.swift; sourceTree = "<group>"; };
+		4D32DC5B2205ED05002ECDD9 /* MoviesList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MoviesList.json; sourceTree = "<group>"; };
+		4D32DC5D2205EDBC002ECDD9 /* StubResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubResponse.swift; sourceTree = "<group>"; };
 		4D91EECE22021388004EEA03 /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D91EED122021388004EEA03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D91EED322021388004EEA03 /* MovieSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSelectionViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +124,14 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
+		4D32DC5A2205ECA6002ECDD9 /* Stub */ = {
+			isa = PBXGroup;
+			children = (
+				4D32DC5B2205ED05002ECDD9 /* MoviesList.json */,
+			);
+			path = Stub;
+			sourceTree = "<group>";
+		};
 		4D91EEC522021388004EEA03 = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +175,7 @@
 		4D91EEE52202138C004EEA03 /* MoviesTests */ = {
 			isa = PBXGroup;
 			children = (
+				4D32DC5A2205ECA6002ECDD9 /* Stub */,
 				4D91EEE62202138C004EEA03 /* MoviesTests.swift */,
 				4D91EEE82202138C004EEA03 /* Info.plist */,
 			);
@@ -180,6 +194,7 @@
 		4D91EEFF2202D6A8004EEA03 /* Network Manager */ = {
 			isa = PBXGroup;
 			children = (
+				4D32DC5D2205EDBC002ECDD9 /* StubResponse.swift */,
 				4D91EF002202D740004EEA03 /* NetworkManager.swift */,
 			);
 			path = "Network Manager";
@@ -354,6 +369,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D32DC602205F1D8002ECDD9 /* MoviesList.json in Resources */,
 				4D91EEDC2202138C004EEA03 /* LaunchScreen.storyboard in Resources */,
 				4D91EED92202138C004EEA03 /* Assets.xcassets in Resources */,
 				4D91EED722021388004EEA03 /* Main.storyboard in Resources */,
@@ -364,6 +380,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D32DC5C2205ED05002ECDD9 /* MoviesList.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +501,7 @@
 				4D91EF012202D740004EEA03 /* NetworkManager.swift in Sources */,
 				4D91EED422021388004EEA03 /* MovieSelectionViewController.swift in Sources */,
 				4D91EED222021388004EEA03 /* AppDelegate.swift in Sources */,
+				4D32DC5F2205EE2F002ECDD9 /* StubResponse.swift in Sources */,
 				4D9915082205700D0022EE08 /* MovieSelectionViewModel.swift in Sources */,
 				4D9915482205B1330022EE08 /* FilterViewController.swift in Sources */,
 				4D91EF042202E23F004EEA03 /* MoviesViewModel.swift in Sources */,

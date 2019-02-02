@@ -24,6 +24,7 @@ class MoviesViewController: UIViewController, AlertDisplayer {
         fetchMovies()
     }
     
+    // Function to fetch movies from the server
     private func fetchMovies() {
         collectionView.isHidden = true
         viewModel.getNewMovies()
@@ -39,7 +40,6 @@ extension MoviesViewController: UICollectionViewDataSource, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.totalCount
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifiers.list, for: indexPath) as! MovieCollectionViewCell
         if isLoadingCell(for: indexPath) {
@@ -74,7 +74,6 @@ extension MoviesViewController: MoviesViewModelDelegate {
             collectionView.reloadData()
             return
         }
-        
         let indexPathsToReload = visibleIndexPathsToReload(intersecting: newIndexPathsToReload)
         collectionView.reloadItems(at: indexPathsToReload)
     }
@@ -98,10 +97,12 @@ extension MoviesViewController: FilterViewControllerDelegate {
 }
 
 private extension MoviesViewController {
+    // This functuon will whether the current cell is loaded or not
     func isLoadingCell(for indexPath: IndexPath) -> Bool {
         return indexPath.row >= viewModel.currentCount
     }
     
+    // This will reload the rows with data after getting a new page response
     func visibleIndexPathsToReload(intersecting indexPaths: [IndexPath]) -> [IndexPath] {
         let indexPathsForVisibleItems = collectionView.indexPathsForVisibleItems
         let indexPathsIntersection = Set(indexPathsForVisibleItems).intersection(indexPaths)

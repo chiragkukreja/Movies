@@ -28,21 +28,16 @@ class MovieSelectionViewModel {
     var rating: String {
         return "\(movieDetails?.rating ?? 0)"
     }
-//    var genres: String? {
-//        return movieDetails?.genres.map({$0.name}).joined(separator: ",")
-//    }
-//    var languages: String? {
-//        return movieDetails?.languages.map({$0.name}).joined(separator: ",")
-//    }
     var posterPath: URL? {
         guard let posterPath  = movieDetails?.posterPath else {return nil}
-        return  URL(string: Constant.imgaelogoPath+posterPath)
+        return  URL(string: Constant.imagepath+posterPath)
     }
     init(networkProvider: NetworkProvider<NetworkRouter>, movieId: Int) {
         self.networkProvider = networkProvider
         self.movieId = movieId
     }
     
+    // This will fetch the particular movie details
     func getMovieDetails() {
         networkProvider.request(.movieDetails(id: movieId)) { [weak self] result in
             guard let `self` = self else {return}
