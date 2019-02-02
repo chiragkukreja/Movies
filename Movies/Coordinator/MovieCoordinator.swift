@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Moya
 
 protocol BaseCoordinatorProtocol: class {
     var navigationController: UINavigationController? {get set}
@@ -35,8 +34,7 @@ final class MovieFilterCoordinator : BaseCoordinator {
 final class MovieDetailCoordinator: BaseCoordinator {
     func show( from viewController: UIViewController, movieId: Int) {
         let vc: MovieSelectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieSelectionViewController") as! MovieSelectionViewController
-        let provider = MoyaProvider<NetworkRouter>(plugins: [NetworkLoggerPlugin(verbose: true)])
-        let selectionViewModel = MovieSelectionViewModel(networkProvider: provider, movieId: movieId)
+        let selectionViewModel = MovieSelectionViewModel(networkProvider: AppProvider.networkManager, movieId: movieId)
         vc.viewModel = selectionViewModel
         self.navigationController?.pushViewController(vc, animated: true)
     }

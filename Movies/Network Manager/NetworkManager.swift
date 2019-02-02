@@ -11,6 +11,10 @@ import Moya
 
 public typealias NetworkProvider = MoyaProvider
 
+struct AppProvider {
+    static let networkManager : MoyaProvider<NetworkRouter> =
+         MoyaProvider<NetworkRouter>(plugins: [NetworkLoggerPlugin(verbose: true)])
+}
 enum NetworkRouter {
     case discover(page: Int, maxYear: String, minYear: String)
     case movieDetails(id: Int)

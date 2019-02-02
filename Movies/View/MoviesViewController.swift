@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import  Moya
 class MoviesViewController: UIViewController, AlertDisplayer {
 
     private enum CellIdentifiers {
@@ -20,8 +19,7 @@ class MoviesViewController: UIViewController, AlertDisplayer {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "MOVIES"
-        let provider = MoyaProvider<NetworkRouter>(plugins: [NetworkLoggerPlugin(verbose: true)])
-        viewModel = MoviesViewModel(networkProvider: provider)
+        viewModel = MoviesViewModel(networkProvider: AppProvider.networkManager)
         viewModel.delegate = self
         fetchMovies()
     }
