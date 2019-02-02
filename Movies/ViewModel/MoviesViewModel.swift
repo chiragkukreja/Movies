@@ -52,15 +52,14 @@ class MoviesViewModel {
         totalItems = 0
     }
     // This function will fetch movies from the server
-    func getNewMovies(){
+    func getNewMovies(_ completion: (() ->Void)? = nil) {
         guard !isFetchInProgress else {
             return
         }
         isFetchInProgress = true
-        networkProvider.request(.discover(page: currentPage, maxYear: self.maxYear, minYear:self.minYear)) { [weak self] result in
+        networkProvider.request(.discover(page: currentPage, maxYear: self.maxYear, minYear:self.minYear),callbackQueue: DispatchQueue.main, progress:nil) { [weak self] result in
             guard let `self` = self else {return}
             self.isFetchInProgress = false
-            DispatchQueue.main.async {
                 switch result {
                 case let .success(response):
                     do {
@@ -69,24 +68,27 @@ class MoviesViewModel {
                         if self.currentPage == 1 {
                             self.totalItems = results.numberOfResults
                         }
-                        if self.movies.isEmpty {
-                            self.delegate?.onFetchFailed(with: Constant.failureMessage)
-                        }
-                        else if results.page > 1 {
-                            let indexPathsToReload = self.calculateIndexPathsToReload(from: results.movies)
-                            self.delegate?.onFetchCompleted(with: indexPathsToReload)
-                        } else {
-                            self.delegate?.onFetchCompleted(with: .none)
-                        }
+                        
+                            if self.movies.isEmpty {
+                                self.delegate?.onFetchFailed(with: Constant.failureMessage)
+                            }
+                            else if results.page > 1 {
+                                let indexPathsToReload = self.calculateIndexPathsToReload(from: results.movies)
+                                self.delegate?.onFetchCompleted(with: indexPathsToReload)
+                            } else {
+                                self.delegate?.onFetchCompleted(with: .none)
+                            }
+                        
                         self.currentPage += 1
                         
                     } catch let err {
                         print(err)
                     }
-                case let .failure(_):
-                    self.delegate?.onFetchFailed(with: Constant.failureMessage)
+                case .failure:
+                        self.delegate?.onFetchFailed(with: Constant.failureMessage)
+                    
                 }
-            }
+            completion?()
         }
             
     }
@@ -95,5 +97,9 @@ class MoviesViewModel {
         let startIndex = movies.count - newResults.count
         let endIndex = startIndex + newResults.count
         return (startIndex..<endIndex).map { IndexPath(row: $0, section: 0) }
+    }
+    
+    func getAppliedFilters() -> Filters {
+           return Filters(minYear: minYear, maxYear: maxYear)
     }
 }

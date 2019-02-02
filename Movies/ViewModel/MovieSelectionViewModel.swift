@@ -13,7 +13,7 @@ protocol MovieSelectionViewModelDelegate: class {
 }
 
 class MovieSelectionViewModel {
-
+    
     var networkProvider: NetworkProvider<NetworkRouter>!
     weak var delegate: MovieSelectionViewModelDelegate?
     
@@ -38,24 +38,22 @@ class MovieSelectionViewModel {
     }
     
     // This will fetch the particular movie details
-    func getMovieDetails() {
-        networkProvider.request(.movieDetails(id: movieId)) { [weak self] result in
+    func getMovieDetails(_ completion: (() ->Void)? = nil) {
+        networkProvider.request(.movieDetails(id: movieId),callbackQueue: DispatchQueue.main, progress:nil)  { [weak self] result in
             guard let `self` = self else {return}
-            
             switch result {
             case let .success(response):
                 do {
                     let result = try JSONDecoder().decode(Movie.self, from: response.data)
                     self.movieDetails = result
-                    DispatchQueue.main.async {
-                        self.delegate?.onFetchCompleted()
-                    }
+                    self.delegate?.onFetchCompleted()
                 } catch let err {
                     print(err)
                 }
-            case let .failure(error):
-                print(error)
+            case  .failure:
+                self.delegate?.onFetchFailed(with: "Unable to load details")
             }
+            completion?()
         }
     }
 }

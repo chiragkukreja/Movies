@@ -11,38 +11,58 @@ import UIKit
 protocol FilterViewControllerDelegate: class {
     func handleButttonAction(with filters: Filters)
 }
-
-
 struct Filters {
     let minYear: String
     let maxYear: String
 }
-class FilterViewController: UIViewController {
-
+final class FilterViewController: UIViewController {
+    var viewModel: FilterViewModel!
     weak var delegate: FilterViewControllerDelegate?
     @IBOutlet weak var minYear: UITextField!
     @IBOutlet weak var maxYear: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if !viewModel.filters.minYear.isEmpty{
+            minYear.text = viewModel.filters.minYear
+        }
+        if !viewModel.filters.maxYear.isEmpty{
+            maxYear.text = viewModel.filters.maxYear
+        }
     }
     
     @IBAction func viewResultsTapped(_ sender: Any) {
+        dismiss()
+        guard let min = minYear.text, let max = maxYear.text else {return}
+        
+        var reloadRequired = false
+        if  min != viewModel.filters.minYear {
+            reloadRequired = true
+        }
+        if max != viewModel.filters.maxYear {
+            reloadRequired = true
+        }
+        if reloadRequired{
+            let filters = Filters(minYear: min, maxYear: max)
+            delegate?.handleButttonAction(with: filters)
+        }
+    }
+    @IBAction func cancelTapped(_ sender: Any) {
+        dismiss()
+    }
+   private func dismiss() {
         view.endEditing(true)
         dismiss(animated: true, completion: nil)
-        let filters = Filters(minYear: minYear.text ?? "", maxYear: maxYear.text ?? "")
-        delegate?.handleButttonAction(with: filters)
     }
 }
 
 extension FilterViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let maxLength = 4
         let currentString: NSString = textField.text! as NSString
         let newString: NSString =
             currentString.replacingCharacters(in: range, with: string) as NSString
-        return newString.length <= maxLength
+        return newString.intValue <= 2019
     }
 }
 

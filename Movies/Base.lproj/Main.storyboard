@@ -273,6 +273,15 @@
                                             <action selector="viewResultsTapped:" destination="y4y-ji-sAf" eventType="touchUpInside" id="vlA-fN-Z0X"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UOZ-7y-C4b">
+                                        <rect key="frame" x="267" y="5.5" width="48" height="30"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelTapped:" destination="y4y-ji-sAf" eventType="touchUpInside" id="DYt-Bc-Z6V"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -281,13 +290,15 @@
                                     <constraint firstAttribute="height" constant="200" id="KS2-tC-BCg"/>
                                     <constraint firstItem="c8D-vg-Emh" firstAttribute="leading" secondItem="zif-qU-DAe" secondAttribute="leading" constant="15" id="SOZ-ks-Lhe"/>
                                     <constraint firstItem="gns-IY-3jw" firstAttribute="top" secondItem="c8D-vg-Emh" secondAttribute="bottom" constant="50" id="URa-Fs-G4L"/>
+                                    <constraint firstAttribute="trailing" secondItem="UOZ-7y-C4b" secondAttribute="trailing" constant="20" id="YU7-tf-hAq"/>
                                     <constraint firstItem="2x5-9A-Ubp" firstAttribute="centerX" secondItem="zif-qU-DAe" secondAttribute="centerX" id="eas-pX-qRR"/>
                                     <constraint firstItem="gns-IY-3jw" firstAttribute="centerX" secondItem="zif-qU-DAe" secondAttribute="centerX" id="jVb-cD-d0n"/>
+                                    <constraint firstItem="UOZ-7y-C4b" firstAttribute="centerY" secondItem="2x5-9A-Ubp" secondAttribute="centerY" id="kjJ-7b-xhS"/>
                                     <constraint firstItem="2x5-9A-Ubp" firstAttribute="top" secondItem="zif-qU-DAe" secondAttribute="top" constant="10" id="oje-71-P8e"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.10445205479452055" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="c7q-hY-Yga" firstAttribute="trailing" secondItem="zif-qU-DAe" secondAttribute="trailing" constant="20" id="Swz-hq-Fn1"/>
                             <constraint firstItem="zif-qU-DAe" firstAttribute="centerY" secondItem="vzj-YE-dE0" secondAttribute="centerY" constant="-100" id="aOf-TA-RuP"/>

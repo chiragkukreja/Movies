@@ -13,23 +13,19 @@ class MoviesTests: XCTestCase {
 
     var moviesViewModel: MoviesViewModel!
     override func setUp() {
+        super.setUp()
         moviesViewModel = MoviesViewModel(networkProvider: AppProvider.networkManager)
-        moviesViewModel.getNewMovies()
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+       super.tearDown()
     }
 
-    func testMoviesCount() {
-        XCTAssertTrue(moviesViewModel.currentCount > 0)
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testMoviesData() {
+        moviesViewModel.getNewMovies {
+            XCTAssertTrue(self.moviesViewModel.currentCount >= 30)
+            XCTAssertTrue(self.moviesViewModel.totalCount > 0)
+            XCTAssertNotNil(self.moviesViewModel.movie(at: 1))
         }
     }
-
 }

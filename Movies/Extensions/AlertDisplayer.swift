@@ -8,11 +8,7 @@
 
 import UIKit
 
-protocol AlertDisplayer {
-    func displayAlert(with title: String, message: String, actions: [UIAlertAction]?)
-}
-
-extension AlertDisplayer where Self: UIViewController {
+extension UIViewController {
     func displayAlert(with title: String, message: String, actions: [UIAlertAction]? = nil) {
         guard presentedViewController != nil else {
             return

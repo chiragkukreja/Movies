@@ -7,7 +7,7 @@
 //
 
 import UIKit
-class MoviesViewController: UIViewController, AlertDisplayer {
+final class MoviesViewController: UIViewController {
 
     private enum CellIdentifiers {
         static let list = "List"
@@ -32,7 +32,7 @@ class MoviesViewController: UIViewController, AlertDisplayer {
     }
     
     @IBAction func filterButtonTapped(_ sender: Any) {
-        MovieFilterCoordinator(self.navigationController).show(viewController: self)
+        MovieFilterCoordinator(self.navigationController).show(from: self, filters: viewModel.getAppliedFilters())
     }
 }
 
@@ -56,7 +56,7 @@ extension MoviesViewController: UICollectionViewDataSource, UICollectionViewData
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = UIScreen.main.bounds.width - 50
+        let width = UIScreen.main.bounds.width - 30
         return CGSize(width: width/2, height: width/2)
     }
     
@@ -80,9 +80,9 @@ extension MoviesViewController: MoviesViewModelDelegate {
     
     func onFetchFailed(with reason: String) {
         indicatorView.stopAnimating()
-        let title = "Warning".localizedString
+        let title = "Error".localizedString
         let action = UIAlertAction(title: "OK".localizedString, style: .default)
-        displayAlert(with: title , message: reason, actions: [action])
+        self.displayAlert(with: title , message: reason, actions: [action])
     }
 }
 

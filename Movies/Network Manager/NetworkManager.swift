@@ -49,7 +49,7 @@ extension NetworkRouter: TargetType {
     var sampleData: Data {
         switch self {
         case .movieDetails:
-            return StubResponse.fromJSONFile("MoviesList")
+            return StubResponse.fromJSONFile("MovieDetails")
         case .discover:
             return StubResponse.fromJSONFile("MoviesList")
         }

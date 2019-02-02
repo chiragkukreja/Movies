@@ -27,12 +27,3 @@ struct Movie: Codable {
         case overview
     }
 }
-
-
-struct custom: Codable {
-    let name: String
-    
-    enum CodingKeys: String, CodingKey{
-        case name = "name"
-    }
-}

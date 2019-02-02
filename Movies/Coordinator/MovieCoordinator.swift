@@ -22,17 +22,19 @@ class BaseCoordinator: BaseCoordinatorProtocol {
 }
 
 final class MovieFilterCoordinator : BaseCoordinator {
-    func show(viewController: MoviesViewController) {
+    func show(from viewController: MoviesViewController, filters: Filters) {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FilterViewController") as! FilterViewController
+        let viewModel = FilterViewModel(filters: filters)
+        vc.viewModel = viewModel
         vc.delegate = viewController
-        vc.modalPresentationStyle = .overFullScreen
+        vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
+        vc.view.backgroundColor = UIColor.init(white: 0, alpha: 0.8)
         viewController.present(vc, animated: true, completion: nil)
     }
 }
-
 final class MovieDetailCoordinator: BaseCoordinator {
-    func show( from viewController: UIViewController, movieId: Int) {
+    func show(from viewController: UIViewController, movieId: Int) {
         let vc: MovieSelectionViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieSelectionViewController") as! MovieSelectionViewController
         let selectionViewModel = MovieSelectionViewModel(networkProvider: AppProvider.networkManager, movieId: movieId)
         vc.viewModel = selectionViewModel

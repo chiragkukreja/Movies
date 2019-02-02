@@ -9,7 +9,7 @@
 import UIKit
 import SDWebImage
 
-class MovieSelectionViewController: UIViewController {
+final class MovieSelectionViewController: UIViewController {
 
     var viewModel: MovieSelectionViewModel!
     @IBOutlet weak var moviePoster: UIImageView!
@@ -38,7 +38,10 @@ extension MovieSelectionViewController: MovieSelectionViewModelDelegate {
     }
     func onFetchFailed(with reason: String) {
         indicatorView.stopAnimating()
-
+        indicatorView.stopAnimating()
+        let title = "Error".localizedString
+        let action = UIAlertAction(title: "OK".localizedString, style: .default)
+        displayAlert(with: title , message: reason, actions: [action])
     }
 }
 
