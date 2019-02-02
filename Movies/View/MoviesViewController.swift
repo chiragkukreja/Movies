@@ -33,7 +33,7 @@ class MoviesViewController: UIViewController, AlertDisplayer {
     }
     
     @IBAction func filterButtonTapped(_ sender: Any) {
-
+        MovieFilterCoordinator(self.navigationController).show(viewController: self)
     }
 }
 
@@ -63,10 +63,10 @@ extension MoviesViewController: UICollectionViewDataSource, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-      
+        guard !isLoadingCell(for: indexPath) else { return }
+        let movieId = viewModel.movie(at: indexPath.row).id
+        MovieDetailCoordinator(self.navigationController).show(from: self, movieId: movieId)
     }
-    
 }
 extension MoviesViewController: MoviesViewModelDelegate {
     func onFetchCompleted(with newIndexPathsToReload: [IndexPath]?) {
