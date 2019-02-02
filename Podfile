@@ -6,7 +6,8 @@ target 'Movies' do
   use_frameworks!
 
   # Pods for Movies
- pod 'Moya', '~> 12.0'
+  pod 'Moya', '~> 12.0'
+  pod 'SDWebImage'
 
   target 'MoviesTests' do
     inherit! :search_paths
