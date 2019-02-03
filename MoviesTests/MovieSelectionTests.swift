@@ -20,10 +20,12 @@ class MovieSelectionTests: XCTestCase {
     override func tearDown() {
         super.tearDown()
     }
+    
+    // This will fetch data from the local stub and then validate the data
     func testMovieDetails() {
         movieViewModel.getMovieDetails {
             XCTAssertNotNil(self.movieViewModel.movieDetails)
-            XCTAssert(self.movieViewModel.movieDetails?.title == "Glass")
+            XCTAssertEqual(self.movieViewModel.movieDetails?.title, "Glass")
             XCTAssertNotNil(self.movieViewModel.movieDetails?.posterPath)
         }
         

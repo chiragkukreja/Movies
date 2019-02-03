@@ -21,9 +21,10 @@ class MoviesTests: XCTestCase {
        super.tearDown()
     }
 
+    // This will fetch data from the local stub and then validate the data
     func testMoviesData() {
         moviesViewModel.getNewMovies {
-            XCTAssertTrue(self.moviesViewModel.currentCount >= 30)
+            XCTAssertTrue(self.moviesViewModel.currentCount > 0)
             XCTAssertTrue(self.moviesViewModel.totalCount > 0)
             XCTAssertNotNil(self.moviesViewModel.movie(at: 1))
         }
